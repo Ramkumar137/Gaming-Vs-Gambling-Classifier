@@ -78,3 +78,7 @@ The classifier analyzes games based on the following features:
 ├── flask_code.py
 
 └── README.md
+
+
+
+![Alt Text](C:\Users\jayap\Pictures\Screenshots\Screenshot 2025-02-23 214019.png)
