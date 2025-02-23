@@ -307,23 +307,10 @@ def main():
 
             print(f"Feedback : {response}")
 
-        # Ask if user wants to continue
         if input("\nWould you like to classify another game? (yes/no): ").lower() != 'yes':
             break
 
     print("\nThank you for using the Game Classification System!")
-
-
-# evaluation_prompt = (
-#         f"Question: {generated_question}\n"
-#         f"User's Answer: {response_text}\n"
-#         f"Evaluate the user's answer and provide a score out of 10 with feedback. like score:'score'"
-#         f"Include suggestions for grammar improvement if needed, along with an overall assessment. like grammar suggestion:'suggestions'"
-#     )
-#
-# response = chat.send_message(evaluation_prompt, generation_config=genai.GenerationConfig(
-#             response_mime_type="application/json", response_schema=EvalSchema
-#         ), )
 
 if __name__ == "__main__":
     main()
