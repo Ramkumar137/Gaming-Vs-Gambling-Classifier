@@ -44,15 +44,28 @@ The classifier analyzes games based on the following features:
 
 # 🎯 How It Works
 
-User Selection: Choose between Developer or Gamer mode
+ - User Selection: Choose between Developer or Gamer mode
 
-Data Input: Enter game characteristics through the form
+ - Data Input: Enter game characteristics through the form
 
-Classification: The model processes the input using Random Forest
+ - Classification: The model processes the input using Random Forest
 
-AI Analysis: Gemini AI provides contextual feedback
+ - AI Analysis: Gemini AI provides contextual feedback
 
-Visualization: Results are displayed with probability bars
+ - Visualization: Results are displayed with probability bars
 
-Recommendations: Receive tailored suggestions based on user type
+ - Recommendations: Receive tailored suggestions based on user type
+
+# 🛠️ Technical Stack
+### Frontend
+
+ - HTML & CSS
+ - JavaScript (ReactJS)
+
+### Backend
+
+ - Flask
+ - scikit-learn
+ - Google Generative AI
+ - Pandas & NumPy
 
