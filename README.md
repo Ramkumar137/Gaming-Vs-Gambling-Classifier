@@ -72,6 +72,9 @@ The classifier analyzes games based on the following features:
 # Project Structure
 
 ├── templates/
+
 │ └── index.html
+
 ├── flask_code.py
+
 └── README.md
