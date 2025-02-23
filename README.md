@@ -69,3 +69,9 @@ The classifier analyzes games based on the following features:
  - Google Generative AI
  - Pandas & NumPy
 
+# Project Structure
+
+├── templates/
+│ └── index.html
+├── flask_code.py
+└── README.md
