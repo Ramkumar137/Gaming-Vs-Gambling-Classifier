@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Classifier Dashboard - Glass Theme</title>
+    <style>
+        :root {
+            /* Base Colors */
+            --primary-bg: #1f0505;
+            --secondary-bg: rgba(45, 8, 8, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #ffcccc;
+            
+            /* Gaming Theme Colors */
+            --gaming-accent: #4CAF50;
+            --gaming-hover: #45a049;
+            --gaming-light: #c8e6c9;
+            
+            /* Gambling Theme Colors */
+            --gambling-accent: rgba(255, 68, 68, 0.7);
+            --gambling-hover: rgba(255, 102, 102, 0.8);
+            --gambling-light: rgba(255, 205, 210, 0.3);
+            
+            /* Glass Effect Colors */
+            --title-color: #FFD700;
+            --glass-border: rgba(255, 0, 0, 0.3);
+            --glass-shadow: 0 8px 32px 0 rgba(255, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1f0505 0%, #400808 100%);
+            color: var(--text-primary);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(45, 8, 8, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-right: 1px solid var(--glass-border);
+            padding: 2rem 1rem;
+            box-shadow: var(--glass-shadow);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        .logo {
+            color: var(--title-color);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 1rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+            color: var(--title-color);
+            transform: translateX(5px);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background: rgba(45, 8, 8, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .form-container h2 {
+            color: var(--title-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(31, 5, 5, 0.4);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--gambling-accent);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            outline: none;
+        }
+
+        button {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.8) 0%, rgba(255, 215, 0, 0.6) 100%);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.2);
+            color: #000;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(255, 215, 0, 0.7) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px 0 rgba(255, 215, 0, 0.3);
+        }
+
+        .result-container {
+            background: rgba(45, 8, 8, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            animation: slideUp 0.5s ease-out;
+            opacity: 0;
+            display: none;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-container.show {
+            opacity: 1;
+            display: block;
+        }
+
+        .result-container.gaming {
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(76, 175, 80, 0.2);
+        }
+
+        .result-container.gambling {
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(255, 68, 68, 0.2);
+        }
+
+        .prediction {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .prediction.gaming {
+            color: var(--gaming-accent);
+        }
+
+        .prediction.gambling {
+            color: var(--gambling-accent);
+        }
+
+        .probabilities {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .probability-item {
+            flex: 1;
+        }
+
+        .probability-item div:first-child {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .probability-bar {
+            height: 20px;
+            background: rgba(31, 5, 5, 0.4);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .probability-fill {
+            height: 100%;
+            width: 0;
+            transition: width 1s ease-out;
+        }
+
+        .probability-fill.gaming {
+            background-color: var(--gaming-accent);
+        }
+
+        .probability-fill.gambling {
+            background-color: var(--gambling-accent);
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.08;
+            animation: float 30s infinite ease-in-out;
+        }
+
+        .shape:nth-child(even) {
+            animation-direction: reverse;
+        }
+
+        .shape:nth-child(3n) {
+            animation-duration: 45s;
+        }
+
+        .shape:nth-child(5n) {
+            animation-duration: 60s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, -50px) rotate(15deg); }
+            50% { transform: translate(100px, 0) rotate(30deg); }
+            75% { transform: translate(50px, 50px) rotate(15deg); }
+        }
+
+        .user-type-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .user-type-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-type-btn:hover,
+        .user-type-btn.active {
+            background: rgba(255, 215, 0, 0.4);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .feedback-container {
+            margin-top: 1.5rem;
+        }
+
+        .feedback-title {
+            color: var(--title-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .feedback-content {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <svg class="shape" style="top: 10%; left: 10%;" width="50" height="50" viewBox="0 0 50 50">
+            <polygon points="25,5 45,45 5,45" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+        <svg class="shape" style="top: 20%; left: 80%;" width="40" height="40" viewBox="0 0 40 40">
+            <rect width="40" height="40" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+        <svg class="shape" style="top: 60%; left: 30%;" width="60" height="60" viewBox="0 0 60 60">
+            <circle cx="30" cy="30" r="25" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+        <svg class="shape" style="top: 80%; left: 70%;" width="70" height="70" viewBox="0 0 70 70">
+            <polygon points="35,5 65,35 35,65 5,35" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+        <svg class="shape" style="top: 40%; left: 50%;" width="45" height="45" viewBox="0 0 45 45">
+            <polygon points="22.5,5 40,40 5,40" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+        <svg class="shape" style="top: 5%; left: 40%;" width="30" height="30" viewBox="0 0 30 30">
+            <circle cx="15" cy="15" r="12" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+        <svg class="shape" style="top: 70%; left: 5%;" width="55" height="55" viewBox="0 0 55 55">
+            <polygon points="27.5,5 50,27.5 27.5,50 5,27.5" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+        <svg class="shape" style="top: 30%; left: 90%;" width="40" height="40" viewBox="0 0 40 40">
+            <rect x="5" y="5" width="30" height="30" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+        <svg class="shape" style="top: 85%; left: 40%;" width="50" height="50" viewBox="0 0 50 50">
+            <polygon points="25,5 45,25 25,45 5,25" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+        <svg class="shape" style="top: 15%; left: 60%;" width="35" height="35" viewBox="0 0 35 35">
+            <circle cx="17.5" cy="17.5" r="15" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+    </div>
+    <nav class="sidebar">
+        <div class="logo">
+            🎮 Game Wise
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Dashboard</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">LogOut</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="form-container">
+            <h2>Game Classification</h2>
+            <div class="user-type-buttons">
+                <button class="user-type-btn" data-type="developer">Developer</button>
+                <button class="user-type-btn" data-type="gamer">Gamer</button>
+            </div>
+            <form id="predictionForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="genre">Genre</label>
+                        <select id="genre" required>
+                            <option value="">Select Genre</option>
+                            <option value="Action">Action</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="RPG">RPG</option>
+                            <option value="Strategy">Strategy</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Racing">Racing</option>
+                            <option value="Simulation">Simulation</option>
+                            <option value="Puzzle">Puzzle</option>
+                            <option value="Casino">Casino</option>
+                            <option value="Card">Card</option>
+                            <option value="Board">Board</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="platform">Platform</label>
+                        <select id="platform" required>
+                            <option value="">Select Platform</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="PC">PC</option>
+                            <option value="Console">Console</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inAppPurchase">In-App Purchases</label>
+                        <select id="inAppPurchase" required>
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="realCashReward">Real Cash Rewards</label>
+                        <select id="realCashReward" required>
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="releaseYear">Release Year</label>
+                        <input type="number" id="releaseYear" min="1970" max="2030" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="playerBase">Player Base (millions)</label>
+                        <input type="number" id="playerBase" min="0" step="0.1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating">Rating (out of 5)</label>
+                        <input type="number" id="rating" min="0" max="5" step="0.1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ageRating">Age Rating</label>
+                        <select id="ageRating" required>
+                            <option value="3">E (3+)</option>
+                            <option value="10">E10+ (10+)</option>
+                            <option value="13">T (13+)</option>
+                            <option value="17">M (17+)</option>
+                            <option value="18">A (18+)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="luckFactor">Luck Factor (%)</label>
+                        <input type="number" id="luckFactor" min="0" max="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="playerInteract">Player Interaction</label>
+                        <select id="playerInteract" required>
+                            <option value="">Select Interaction Type</option>
+                            <option value="Single-player">Single-player</option>
+                            <option value="Multi-player">Multi-player</option>
+                            <option value="Co-Operative">Co-Operative</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit">Classify Game</button>
+            </form>
+        </div>
+
+        <div class="result-container">
+            <h2>Classification Result</h2>
+            <div class="prediction">Predicted Category: Gaming</div>
+            <div class="probabilities">
+                <div class="probability-item">
+                    <div>Gaming</div>
+                    <div class="probability-bar">
+                        <div class="probability-fill gaming"></div>
+                    </div>
+                </div>
+                <div class="probability-item">
+                    <div>Gambling</div>
+                    <div class="probability-bar">
+                        <div class="probability-fill gambling"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feedback-container">
+                <h3 class="feedback-title">AI Feedback</h3>
+                <div class="feedback-content">
+                    <!-- Feedback will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // User type selection
+        let selectedUserType = null;
+        const userTypeButtons = document.querySelectorAll('.user-type-btn');
+        
+        userTypeButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                userTypeButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedUserType = btn.dataset.type;
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('predictionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedUserType) {
+                alert('Please select a user type first');
+                return;
+            }
+
+            // Collect form data
+            const formData = {
+                genre: document.getElementById('genre').value,
+                platform: document.getElementById('platform').value,
+                inAppPurchase: document.getElementById('inAppPurchase').value === 'true',
+                realCashReward: document.getElementById('realCashReward').value === 'true',
+                releaseYear: parseInt(document.getElementById('releaseYear').value),
+                playerBase: parseFloat(document.getElementById('playerBase').value),
+                rating: parseFloat(document.getElementById('rating').value),
+                ageRating: parseInt(document.getElementById('ageRating').value),
+                luckFactor: parseInt(document.getElementById('luckFactor').value),
+                playerInteract: document.getElementById('playerInteract').value
+            };
+
+            // Show result container with animation
+            const resultContainer = document.querySelector('.result-container');
+            resultContainer.style.display = 'block';
+            setTimeout(() => {
+                resultContainer.classList.add('show');
+            }, 10);
+
+            // Simulate prediction based on form data
+            let isGaming = true;
+            // Simple rule-based prediction for demo
+            if (formData.luckFactor > 70 || formData.realCashReward || 
+                formData.genre === 'Casino' || formData.ageRating === 18) {
+                isGaming = false;
+            }
+
+            const gamingProbability = isGaming ? Math.random() * 0.3 + 0.7 : Math.random() * 0.3;
+            const gamblingProbability = 1 - gamingProbability;
+
+            // Update UI
+            const prediction = document.querySelector('.prediction');
+            const gamingFill = document.querySelector('.probability-fill.gaming');
+            const gamblingFill = document.querySelector('.probability-fill.gambling');
+            const feedbackContent = document.querySelector('.feedback-content');
+
+            // Set prediction text and styles
+            prediction.textContent = `Predicted Category: ${isGaming ? 'Gaming' : 'Gambling'}`;
+            prediction.className = `prediction ${isGaming ? 'gaming' : 'gambling'}`;
+            resultContainer.className = `result-container show ${isGaming ? 'gaming' : 'gambling'}`;
+
+            // Animate probability bars
+            gamingFill.style.width = `${gamingProbability * 100}%`;
+            gamblingFill.style.width = `${gamblingProbability * 100}%`;
+
+            // Generate contextual feedback
+            let feedback = '';
+            if (isGaming) {
+                if (selectedUserType === 'developer') {
+                    feedback = `Your game shows strong gaming characteristics. Key strengths include ${formData.genre} elements and ${formData.playerInteract} gameplay. Consider enhancing player engagement through additional narrative elements and skill-based mechanics.`;
+                } else {
+                    feedback = `This game emphasizes entertainment and skill development. It offers a ${formData.genre} experience with ${formData.playerInteract} gameplay. Enjoy the gaming experience!`;
+                }
+            } else {
+                if (selectedUserType === 'developer') {
+                    feedback = `Your game shows gambling-like characteristics due to ${formData.luckFactor}% luck factor and ${formData.realCashReward ? 'real cash rewards' : 'other elements'}. Consider reducing luck-based elements and adding more skill-based features to align better with gaming standards.`;
+                } else {
+                    feedback = `This game contains gambling-like elements with a high luck factor and ${formData.realCashReward ? 'real money rewards' : 'similar mechanics'}. Consider games with more skill-based progression for a better gaming experience.`;
+                }
+            }
+            
+            feedbackContent.textContent = feedback;
+        });
+
+        // Initialize form with current year
+        document.getElementById('releaseYear').value = new Date().getFullYear();
+    </script>
+</body>
+</html>
