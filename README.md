@@ -79,6 +79,4 @@ The classifier analyzes games based on the following features:
 
 └── README.md
 
-
-
-![Alt Text](C:\Users\jayap\Pictures\Screenshots\Screenshot 2025-02-23 214019.png)
+![Screenshot 2025-02-23 214019](https://github.com/user-attachments/assets/f5bf78d6-78a2-4adc-b5aa-b8589dd8e9d7)
