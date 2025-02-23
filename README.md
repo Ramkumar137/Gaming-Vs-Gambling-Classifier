@@ -3,11 +3,11 @@ A machine learning-powered web application that helps classify games as either g
 
 # 🌟 Features
 
- Real-time game classification using Random Forest algorithm
+ ## Real-time game classification using Random Forest algorithm
  
- Interactive web interface with modern glass-morphism design
+ ## Interactive web interface with modern glass-morphism design
  
- Dual user modes: Developer and Gamer perspectives
+ ## Dual user modes: Developer and Gamer perspectives
  
  AI-powered feedback using Google's Gemini model
  
