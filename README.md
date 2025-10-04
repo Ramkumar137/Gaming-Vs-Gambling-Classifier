@@ -1,7 +1,7 @@
-# Gaming-Vs-Gambling-Classifier🎮
+# Gaming-Vs-Gambling-Classifier
 A machine learning-powered web application that helps classify games as either gaming or gambling content using advanced AI analysis. The system provides tailored feedback for both developers and gamers using Google's Gemini AI.
 
-# 🌟 Features
+# Features
 
   - Real-time game classification using Random Forest algorithm
  
@@ -17,7 +17,7 @@ A machine learning-powered web application that helps classify games as either g
  
   - Cross-Origin Resource Sharing (CORS) enabled
 
-# 📊 Data Features
+# Data Features
 The classifier analyzes games based on the following features:
 
  - Genre
@@ -42,7 +42,7 @@ The classifier analyzes games based on the following features:
    
  - Betting Features
 
-# 🎯 How It Works
+# How It Works
 
  - User Selection: Choose between Developer or Gamer mode
 
@@ -56,7 +56,7 @@ The classifier analyzes games based on the following features:
 
  - Recommendations: Receive tailored suggestions based on user type
 
-# 🛠️ Technical Stack
+# Technical Stack
 ### Frontend
 
  - HTML & CSS
